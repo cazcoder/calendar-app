@@ -1,0 +1,34 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.15",
+        "axios": "^1.1.2",
+        "laravel-vite-plugin": "^0.8.0",
+        "postcss": "^8.4.30",
+        "sass": "^1.69.0",
+        "tailwindcss": "^3.3.3",
+        "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "@growthbunker/vueflags": "^0.1.14",
+        "@headlessui/vue": "^1.7.16",
+        "@heroicons/vue": "^2.0.18",
+        "@vitejs/plugin-vue": "^4.3.4",
+        "@vuelidate/core": "^2.0.3",
+        "@vuelidate/validators": "^2.0.4",
+        "dayjs": "^1.11.10",
+        "laravel-vue-i18n": "^2.7.1",
+        "notiwind": "^2.0.2",
+        "pinia": "^2.1.6",
+        "vue": "^3.2.36",
+        "vue-lang-code-flags": "^1.0.13",
+        "vue-loader": "^17.2.2",
+        "vue-router": "^4.2.4",
+        "vue-search-select": "^3.2.0"
+    }
+}
