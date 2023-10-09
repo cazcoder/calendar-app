@@ -44,10 +44,10 @@ async function updateProfile(){
 async function getProfile(){
   let response = await store.retrieve();
   if(response){
-    let user = response.user;
-    formData.name = user.name;
-    formData.email = user.email;
-    formData.description = user.description;
+    let profile = response.user;
+    formData.name = profile.name;
+    formData.email = profile.email;
+    formData.description = profile.description;
   }
 }
 getProfile(); 

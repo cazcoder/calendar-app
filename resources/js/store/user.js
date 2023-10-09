@@ -57,7 +57,7 @@ export const useUserStore = defineStore('user', {
 
     async update(data) {
       const toastStore = useAlertStore(); 
-      let response = await ajax('post', 'profile/' + this.user.id, data); 
+      let response = await ajax('post', 'profile', data); 
       if(response.status === 200){
         toastStore.success('toast.update_profile_success');
         return true;
@@ -68,8 +68,9 @@ export const useUserStore = defineStore('user', {
     },
 
     async retrieve() {
-      
-      let response = await ajax('get', 'profile/' + user.id);
+      //console.log(user);
+      //console.log(this.user);
+      let response = await ajax('get', 'profile');
       if(response.status === 200){
         return response.data;
       } else { 

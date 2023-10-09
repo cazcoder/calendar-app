@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'admin' ], function(){
 
     //Edit Profile and logout
-    Route::post('profile/{id}', 'App\Http\Controllers\UserController@updateProfile');
-    Route::get('profile/{id}', 'App\Http\Controllers\UserController@retrieveProfile');
+    Route::post('profile', 'App\Http\Controllers\UserController@updateProfile');
+    Route::get('profile', 'App\Http\Controllers\UserController@retrieveProfile');
     Route::get('logout', 'App\Http\Controllers\UserController@logout');
 
     //Calendar

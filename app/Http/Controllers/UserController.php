@@ -8,6 +8,22 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+   protected $userId;
+   
+   /**
+    * Set the user id
+   */
+   public function __construct(){
+
+      $this->middleware(function ($request, $next) {
+         if($request->is('profile') || $request->is('logout')){ 
+            $this->userId = auth()->user()->id; 
+         }
+         return $next($request);
+      });
+   }
+   
    public function login(Request $request){
       //Validate request
       $this->validate($request, [
@@ -68,7 +84,7 @@ class UserController extends Controller
       }
    }
 
-   public function updateProfile($id, Request $request){
+   public function updateProfile(Request $request){
       $rules = 
       [
          'name' => 'required|min:3',
@@ -82,7 +98,7 @@ class UserController extends Controller
       //Validate request
       $this->validate($request, $rules);
 
-      $user = User::findOrFail($id);
+      $user = User::findOrFail($this->userId);
       $user->fill([
          'name' => $request->input('name'),
          'email' => $request->input('email'),
@@ -100,8 +116,8 @@ class UserController extends Controller
       }
    }
 
-   public function retrieveProfile($id, Request $request){
-      $user = User::findOrFail($id);
+   public function retrieveProfile(Request $request){ 
+      $user = User::findOrFail($this->userId);
       return response()->json([
          'error' => 0,
          'user' => [
