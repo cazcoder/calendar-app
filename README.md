@@ -6,8 +6,8 @@
 4. Run the database migrations - php artisan migrate
 5. Run the code to populate the countries in the database - php artisan db:seed --class=CountrySeeder
 6. Run php artisan serve and npm start dev
-7. Navigate to the root of the site (in my case its: 127.0.0.1:8000/) - you should be presented with a login screen. From that screen there is a link to register a new account.
-8. After registering you'll be redirecte to the admin panel.
+7. Navigate to the root of the site (in my case its: 127.0.0.1:8000/). Update url in .env file if necessary. You should be presented with a login screen. From the login screen there is a link to register a new account.
+8. After registering you'll be redirected to the admin panel.
 
 #### Things that still need to be done.
 
@@ -16,8 +16,8 @@ Below is a list of things that need to be done that I didn't get time to complet
 1. The dashboard needs more - graph etc.
 2. Incorporate tooltips for the dashboard to display the dates - only the first "x" amount displays and the rest must be in a tooltip.
 3. The popup/toast on the calendar page displays behind the calendar after saving the countries for a given day - css issue.
-4. * A random color is being generated for each country when the database is seeded but the colors can look similar - 5 think it's a better option to rather display country flags in the legend as well as in the calendar.
-6. * Being able to change the calendar's year as well as localisation for the calendar - the javascript package being used (dayjs)  supports localisation.
+4. * A random color is being generated for each country when the database is seeded but the country colors can look similar - I think it's a better option to rather display country flags in the legend as well as in the calendar.
+6. * Being able to change the calendar's year as well as localisation for the calendar - the javascript package being used (dayjs) does support localisation.
 7. * Incorporating tooltips when the user hovers over a specifc date.
 8. * Determining how to show the assigned countries for the days that fall outside of the current month (the greyed out blocks). 
 
