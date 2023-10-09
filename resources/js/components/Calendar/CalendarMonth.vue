@@ -419,7 +419,7 @@ export default {
 }
 
 .calendar-day--not-current {
-  background-color: var(--grey-100);
+  background-color: #f5f7fa;
   color: var(--grey-300);
 }
 
