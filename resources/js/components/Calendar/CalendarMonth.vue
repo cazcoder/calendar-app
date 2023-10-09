@@ -110,7 +110,7 @@
                 <p class="text-sm text-gray-500">
                   {{ $t('calendar.modal_text') }}
                   
-                  <input type="text" :value="$t('calendar.modal_selected_date') + '&nbsp;' + clickedDay" class="mt-2 mb-2 focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-grey-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
+                  <input readonly type="text" :value="$t('calendar.modal_selected_date') + '&nbsp;' + clickedDay" class="mt-2 mb-2 focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-grey-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
                 
                   <CountryMultiSelect @selectedCountryItem="selectedCountryItemOption"></CountryMultiSelect>
               
