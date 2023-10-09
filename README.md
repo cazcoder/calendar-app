@@ -21,7 +21,8 @@ Below is a list of things that need to be done that I didn't get time to complet
 5. * Ability to change the calendar year and localisation for the calendar. (The javascript package being used (day.js) does support localisation).
 6. * Incorporate tooltips when the user hovers over a specifc day in the calendar.
 7. * Determine how to show the assigned countries for the days that fall outside of the current month (the greyed out blocks).
-8. There is a focus related issue with the country drpdown when assigning countries and when opening the modal. When opening the modal, the dropdown was automatically getting the focus so I temporarily placed a text input in the modal which now receives the focus upon opening. The focus issue also occurs when choosing a country. This must be fixed and the text input removed, the date however, must be included in the intro text wording so that the user is aware of which date was clicked on.  
+8. There is a focus related issue with the country drpdown when assigning countries and when opening the modal. When opening the modal, the dropdown was automatically getting the focus so I temporarily placed a text input in the modal which now receives the focus upon opening. The focus issue also occurs when choosing a country. This must be fixed and the text input removed, the date however, must be included in the intro text wording so that the user is aware of which date was clicked on.
+9. Efficient navigation to a specific date (day, month, year).  
 
 #### File locations.
 
