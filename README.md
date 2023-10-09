@@ -14,10 +14,10 @@
 
 Below is a list of things that need to be done that I didn't get time to complete. The circle at the beginning of a sentence denotes the points to give priority to:
 
-1. The dashboard needs more features, (graph etc).
+1. The dashboard needs more features, (graph, etc).
 2. Incorporate tooltips for the dashboard to display the dates (only the first "x" amount displays, and the rest must be in a tooltip).
-3. The popup/toast on the calendar page displays behind the calendar after saving the countries for a given day. (css issue).
-4. * A random color is being generated for each country when the database is seeded, but the country colors can look similar (I think it's a better option to rather display country flags in the legend as well as in the calendar).
+3. The popup/toast on the calendar page displays behind the calendar after saving the countries for a given day. [css issue].
+4. * A random color is being generated for each country when the database is seeded, but the country colors can look similar. (I think it's a better option to rather display country flags in the legend as well as in the calendar).
 5. * Ability to change the calendar year and localisation for the calendar. (The javascript package being used (day.js) does support localisation).
 6. * Incorporate tooltips when the user hovers over a specifc day in the calendar.
 7. * Determine how to show the assigned countries for the days that fall outside of the current month (the greyed out blocks).
