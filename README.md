@@ -28,3 +28,7 @@ Below is a list of things that need to be done that I didn't get time to complet
 3. Conrollers - /app/Http/Controllers
 4. Models - /app/Models
 5. Middleware - /app/Http/Middleware
+
+#### Screenshots
+
+I have created a folder called "screenshots" located at the root which contains screenshots of each page.
