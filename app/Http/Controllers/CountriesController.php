@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\{Country, AssignedCountries};
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class CountriesController extends Controller
 {
@@ -43,7 +44,8 @@ class CountriesController extends Controller
 
       public function getMonthColors($year, $month){
          $firstDay = $year . '-' . $month . '-01';
-         $lastDay = $year . '-' . $month . '-31';
+         $daysInMonth = Carbon::create($year . '-' . $month . '-01')->daysInMonth;
+         $lastDay = $year . '-' . $month . '-' . $daysInMonth; 
 
          $monthColors = Country::
                selectRaw('dayofmonth(selected_date) as monthday, group_concat(color) as color')
@@ -87,7 +89,8 @@ class CountriesController extends Controller
 
       public function getLegend($year, $month){
          $firstDay = $year . '-' . $month . '-01';
-         $lastDay = $year . '-' . $month . '-31';
+         $daysInMonth = Carbon::create($year . '-' . $month . '-01')->daysInMonth;
+         $lastDay = $year . '-' . $month . '-' . $daysInMonth;
 
          $legend = Country::select('color', 'name')
                ->join('assigned_countries', 'countries.id', '=', 'assigned_countries.country_id')

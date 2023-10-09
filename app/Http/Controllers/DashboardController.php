@@ -73,6 +73,17 @@ class DashboardController extends Controller
                               group by c.id
                               order by c.name
                               limit 0, 15', [$this->userId]);
+         
+         foreach($visits as $row){
+            $row->dates = explode(',', $row->dates); //dd(count($row->dates));
+            if(count($row->dates) > 3){ 
+               $row->dates_short = implode(', ', array_slice($row->dates, 0, 3));
+               $row->dates_long = implode(', ', array_slice($row->dates, 3));
+            } else {
+               $row->dates_short = implode(', ', $row->dates);
+               $row->dates_long = '';
+            }
+         } 
         
          return response()->json([
             'yearMetric' => $yearMetric[0]->total,

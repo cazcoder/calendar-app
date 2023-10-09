@@ -5,7 +5,6 @@ import useAjax from '../composables/ajax.js'
 const { ajax } = useAjax()
 import { ref, reactive } from 'vue'
 import { GlobeAltIcon, FlagIcon, GlobeAmericasIcon } from '@heroicons/vue/24/outline'
-import LangFlag from 'vue-lang-code-flags'
 
 let metrics = reactive({year: 0, month: 0, week: 0});
 let recentVisits = [];
@@ -140,9 +139,7 @@ fetchData();
             <tr v-for="row in visits" :key="row.id">
             <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
             <div class="flex px-2 py-1">
-            <div>
-            <img src="../assets/img/small-logos/logo-xd.svg" class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-soft-in-out text-sm h-9 w-9 rounded-xl" alt="xd">
-            </div>
+            
             <div class="flex flex-col justify-center">
             <h6 class="mb-0 leading-normal text-sm"><img class="mr-2" style="display:inline;" :src="'img/flags/24x24/' + row.code.toLowerCase() + '.png'"> {{ row.name }}</h6>
             </div>
@@ -150,7 +147,11 @@ fetchData();
             </td>
 
             <td class="p-2 leading-normal align-middle bg-transparent border-b text-sm whitespace-nowrap">
-            <span class="font-semibold leading-tight"> {{ row.dates }} </span>
+            <span class="font-semibold leading-tight"> {{ row.dates_short }} </span>
+            <div v-if="row.dates_long">
+              ... <span>{{ row.dates_long}}</span>
+            </div>
+            
             </td>
             
           </tr>
@@ -173,37 +174,6 @@ fetchData();
 
     </div>
 
-    <div class="flex flex-row flex-wrap flex-grow mt-2">
-
-        <div class="w-full md:w-1/2 p-3">
-            GRAPH 1
-        </div>
-
-        <div class="w-full md:w-1/2 p-3">
-            <!--Graph Card-->
-            GRAPH 2
-            <!--/Graph Card-->
-        </div>
-
-        <div class="w-full md:w-1/2 xl:w-1/3 p-3">
-            <!--Graph Card-->
-            GRAPH 3
-            <!--/Graph Card-->
-        </div>
-
-        <div class="w-full md:w-1/2 xl:w-1/3 p-3">
-            <!--Graph Card-->
-            GRAPH 4
-            <!--/Graph Card-->
-        </div>
-
-        
-
-        
-
-
-    </div>
-
     <!--/ Console Content-->
 
 </div>
@@ -211,3 +181,4 @@ fetchData();
 
 </div>
 </template>
+

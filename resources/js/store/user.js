@@ -6,7 +6,7 @@ import router from "../router";
 
 const { ajax } = useAjax()
 const user = window.User;
-
+//console.log(user);
 
 export const useUserStore = defineStore('user', {
   state: () => ({
@@ -68,7 +68,8 @@ export const useUserStore = defineStore('user', {
     },
 
     async retrieve() {
-      let response = await ajax('get', 'profile/' + this.user.id);
+      
+      let response = await ajax('get', 'profile/' + user.id);
       if(response.status === 200){
         return response.data;
       } else { 
