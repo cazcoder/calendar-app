@@ -31,8 +31,6 @@ fetchData();
 
   <Toast />
 
-
-
   <div class="container w-full mx-auto">
 
 <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
@@ -115,7 +113,7 @@ fetchData();
 
     <!--Divider-->
     <hr class="border-b-2 border-gray-400 mx-4">
-
+    
     <div v-if="visits.length > 0" class="w-full p-3">
             <!--Table Card-->
             <div class="border-black/12.5 shadow-soft-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
@@ -147,11 +145,8 @@ fetchData();
             </td>
 
             <td class="p-2 leading-normal align-middle bg-transparent border-b text-sm whitespace-nowrap">
-            <span class="font-semibold leading-tight"> {{ row.dates_short }} </span>
-            <div v-if="row.dates_long">
-              ... <span>{{ row.dates_long}}</span>
-            </div>
-            
+            <span :data-tippy-content="row.dates_long" class="font-semibold leading-tight"> {{ row.dates_short }} </span>
+           
             </td>
             
           </tr>
@@ -180,5 +175,6 @@ fetchData();
 
 
 </div>
+
 </template>
 

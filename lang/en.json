@@ -37,6 +37,19 @@
    "calendar.modal_text": "Please choose from the countries below. Type in a country name to filter the results.",
    "calendar.modal_savebtn": "Save",
    "calendar.modal_closebtn": "Close",
+   "calendar.month_jan": "January",
+   "calendar.month_feb": "February",
+   "calendar.month_mar": "March",
+   "calendar.month_apr": "April",
+   "calendar.month_may": "May",
+   "calendar.month_jun": "June",
+   "calendar.month_jul": "July",
+   "calendar.month_aug": "Aug",
+   "calendar.month_sep": "September",
+   "calendar.month_oct": "October",
+   "calendar.month_nov": "November",
+   "calendar.month_dec": "December",
+   "calendar.nav_btn": "Go",
    "pageheader.dashboard": "Dashboard",
    "pageheader.edit_profile": "Edit Profile",
    "pageheader.calendar": "Calendar",
@@ -55,5 +68,6 @@
    "dashboard.your_travels":"Your travels.",
    "dashboard.country":"Country",
    "dashboard.dates":"Dates",
-   "dashboard.no_data":"You have not recorded your travels. Please click on the calendar link to do so."
+   "dashboard.no_data":"You have not recorded your travels. Please click on the calendar link to do so.",
+   "dashboard.view_more":"View More ..."
 }

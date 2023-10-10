@@ -11,6 +11,7 @@ export const useCountryStore = defineStore('country', {
       countries: [],
       legend: [],
       monthColors: [],
+      tooltips: [],
       dayCountries: [], //Used for country multiselect control
       clickedDay: '',
   }),
@@ -65,7 +66,8 @@ export const useCountryStore = defineStore('country', {
       let response = await ajax('post', 'countries/index', data); 
       if(response.status === 200){
         this.legend = response.data.legend; 
-        this.monthColors = response.data.monthColors; 
+        this.monthColors = response.data.monthColors;
+        this.tooltips = response.data.codes; 
       } else {
         toastStore.error('toast.fetch_calendar_data_error');
       }

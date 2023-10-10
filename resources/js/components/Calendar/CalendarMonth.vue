@@ -10,12 +10,13 @@
           <h6>{{ $t('calendar.countries_visited') }}</h6>
         </div>
         <div class="flex-auto p-4">
-          <div class="before:border-r-solid relative before:absolute before:top-0 before:left-4 before:h-full before:border-r-2 before:border-r-slate-100 before:content-[''] before:lg:-ml-px">
+          <div >
             
             
               <div v-for="country in legend" class="relative mb-4 mt-0 after:clear-both after:table after:content-['']">
                 <span class="w-6.5 h-6.5 text-base absolute left-4 z-10 inline-flex -translate-x-1/2 items-center justify-center rounded-full bg-white text-center font-semibold">
-                  <span class="country-color" :style="{ backgroundColor: country.color }"></span>
+                  <CountryFlag :tooltip="country.name" :code="country.code" />
+                  <!--<span class="country-color" :style="{ backgroundColor: country.color }"></span>-->
                 </span>
                 <div class="ml-11.252 pt-1.4 lg:max-w-120 relative -top-1.5 w-auto">
                  <h6 class="mb-0 font-semibold leading-normal text-sm text-slate-700">{{ country.name}}</h6>
@@ -33,22 +34,18 @@
 
      <div class="w-full max-w-full px-3 mt-0 mb-6 md:mb-0 md:flex-none lg:flex-none" :class="{ 'md:w-1/2': legend.length > 0, 'lg:w-2/3': legend.length > 0 }">
       <div class="border-black/12.5 shadow-soft-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
-        
-       
-        <div class="calendar-month">
-    <div class="calendar-month-header">
-      <CalendarDateIndicator
-        :selected-date="selectedDate"
-        class="calendar-month-header-selected-month"
-      />
+      
 
-      <CalendarDateSelector
+       <div class="calendar-month">
+
+        <div>
+        <CalendarDateSelector
         :current-date="today"
         :selected-date="selectedDate"
         @dateSelected="selectDate"
       />
-    </div>
-
+      </div>
+    
     <CalendarWeekdays/>
 
     <ol class="days-grid">
@@ -62,10 +59,12 @@
 
       <span>{{ getDay(day.date) }} </span>
       <div class="dayColors" v-if="day.isCurrentMonth">
-        <div v-for="color in monthColors[getDay(day.date)]" :style="{ backgroundColor: color }"></div>
+        <CountryFlag :tooltip="getCountryTooltip(code)" v-for="code in monthColors[getDay(day.date)]" :code="code"/>
+        
       </div>
       </li>
     </ol>
+
   </div>
 
   <TransitionRoot appear :show="isOpen" as="template">
@@ -144,9 +143,9 @@
 import dayjs from "dayjs";
 import weekday from "dayjs/plugin/weekday";
 import weekOfYear from "dayjs/plugin/weekOfYear";
-import CalendarDateIndicator from "./CalendarDateIndicator.vue";
 import CalendarDateSelector from "./CalendarDateSelector.vue";
 import CalendarWeekdays from "./CalendarWeekdays.vue";
+import CountryFlag from "../CountryFlag.vue";
 import {
   TransitionRoot,
   TransitionChild,
@@ -168,7 +167,6 @@ export default {
   name: "CalendarMonth",
 
   components: {
-    CalendarDateIndicator,
     CalendarDateSelector,
     CalendarWeekdays,
     TransitionRoot,
@@ -178,6 +176,7 @@ export default {
     DialogTitle,
     MultiSelect,
     CountryMultiSelect,
+    CountryFlag,
     Toast
   },
 
@@ -190,7 +189,8 @@ export default {
       modalSavedCountries: [], //Stores the countries saved in the db for a given data
       clickedDay: null,
       legend: [],
-      monthColors: []
+      monthColors: [],
+      tooltips: []
     };
   },
 
@@ -288,6 +288,10 @@ export default {
 
   methods: {
 
+    getCountryTooltip(code){ 
+      return this.tooltips[code.toLowerCase()];
+    },
+
     getDay(date) {
       return dayjs(date).format('D');
     },
@@ -347,6 +351,7 @@ export default {
       await countryStore.fetchLegendAndMonthColors(selectedYear, selectedMonth); 
       this.legend = countryStore.legend;
       this.monthColors = countryStore.monthColors;
+      this.tooltips = countryStore.tooltips;
     }
   },
 

@@ -14,6 +14,7 @@
     
     <!-- Main Styling -->
     <link href="{{ asset('css/soft-ui-dashboard-tailwind.css?v=1.0.5') }} rel="stylesheet" />
+    <link href="{{ asset('css/tooltip.css') }} rel="stylesheet" />
 
     @vite('resources/css/app.css')
 
@@ -29,5 +30,21 @@
   <body class="h-full">
     <div id="app"></div>
     @vite('resources/js/app.js')
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script>
+    /*var execute = function () {
+      console.log(document.querySelectorAll('[data-tippy-content]'));
+      tippy('[data-tippy-content]');
+    };*/
+
+    window.onload = function() { // can also use window.addEventListener('load', (event) => {
+    console.log(document.querySelectorAll('.countryFlag')); alert('testing');
+    tippy('[data-tippy-content]');
+    
+  };
+
+
+    </script>
   </body>
 </html>

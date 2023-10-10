@@ -34,11 +34,12 @@ class CountriesController extends Controller
          $legend = $this->getLegend($year, $month);
 
          //Get the month day colors
-         $monthColors = $this->getMonthColors($year, $month); //dd($monthColors);
+         list($data, $codes) = $this->getMonthColors($year, $month); //dd($monthColors);
 
          return response()->json([
             'legend' => $legend,
-            'monthColors' => $monthColors
+            'monthColors' => $data,
+            'codes' => $codes
          ]);
       }
 
@@ -48,7 +49,7 @@ class CountriesController extends Controller
          $lastDay = $year . '-' . $month . '-' . $daysInMonth; 
 
          $monthColors = Country::
-               selectRaw('dayofmonth(selected_date) as monthday, group_concat(color) as color')
+               selectRaw('dayofmonth(selected_date) as monthday, group_concat(code) as code, group_concat(color) as color')
                ->join('assigned_countries', 'countries.id', '=', 'assigned_countries.country_id')
                ->where('user_id', '=', $this->userId)
                ->whereBetween('selected_date', [$firstDay, $lastDay])
@@ -56,13 +57,24 @@ class CountriesController extends Controller
                ->get(); 
 
          $data = [];
+         $codeLookup = [];
          foreach($monthColors as $row){
             $m = $row['monthday'];
-            $colors = explode(',', $row['color']);
-            $data[$m] = $colors;
+            //$colors = explode(',', $row['color']);
+            $code = explode(',', $row['code']);
+            $codeLookup = array_merge($codeLookup, $code);
+            $data[$m] = $code;
          }
 
-         return $data;
+         $codeLookup = array_unique($codeLookup);
+
+         $rows = Country::select('name', 'code')->whereIn('code', $codeLookup)->get();
+         $codes = [];
+         foreach($rows as $row){
+            $codes[strtolower($row['code'])] = $row['name'];
+         } 
+
+         return [$data, $codes];
       }
    
       public function getAssignedCountries(Request $request){
@@ -92,7 +104,7 @@ class CountriesController extends Controller
          $daysInMonth = Carbon::create($year . '-' . $month . '-01')->daysInMonth;
          $lastDay = $year . '-' . $month . '-' . $daysInMonth;
 
-         $legend = Country::select('color', 'name')
+         $legend = Country::select('code', 'name')
                ->join('assigned_countries', 'countries.id', '=', 'assigned_countries.country_id')
                ->where('user_id', '=', $this->userId)
                ->whereBetween('selected_date', [$firstDay, $lastDay])
